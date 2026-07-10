@@ -12,21 +12,51 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 60vh;
     position: relative;
     background: #eee;
 		text-align: center;
 		padding: 0 2em;
     h1 {
-        font-size: 2rem;
+        font-size: 25px;
         margin: 0;
-        letter-spacing: 1rem;
+        letter-spacing: 5px;
     }
     h3 {
+        margin-top: 5px;
         font-size: 1rem;
         letter-spacing: 0.3rem;
         opacity: 0.6;
     }
+}
+/* Tambahkan class untuk sticky navigation */
+.et-hero-tabs-container.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+}
+
+/* Animasi slide down */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Memberi jarak agar konten tidak tertutup navigasi saat sticky */
+.content-wrapper {
+    padding-top: 0;
+    transition: padding-top 0.3s ease;
+}
+
+.content-wrapper.has-sticky-nav {
+    padding-top: 70px; /* Sama dengan tinggi navigasi */
 }
 
 .et-hero-tabs-container {
@@ -69,7 +99,26 @@ a {
     background: #66B1F1;
     transition: left 0.3s ease;
 }
+.d-block {
+    display: block; /* Kembalikan ke block */
+    margin: 25px auto; /* Auto untuk horizontal center */
+    height: 600px;
+    width: 80%;
+}
 
+.et-slides{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-me{
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+/* Responsive Desktop */
 @media (min-width: 800px) {
 	.et-hero-tabs,
 	.et-slide {
@@ -83,4 +132,22 @@ a {
 	.et-hero-tab {
 		font-size: 1rem;
 	}
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+    .d-block {
+        height: 350px; 
+        width: 100%;/* Lebih pendek di mobile */
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .d-block{
+        height: 300px;
+        width: 100%; /* Lebih pendek di smartphone */
+    }
+  
 }
