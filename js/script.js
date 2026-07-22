@@ -1,4 +1,80 @@
-// ========== STICKY NAVIGATION ==========
+document.addEventListener("DOMContentLoaded", function () {
+
+    const marquee = document.querySelector(".marquee-track");
+    const wrapper = document.querySelector(".brand-marquee");
+
+    let position = 0;
+    let animationId;
+    let isMobile = window.innerWidth <= 768;
+
+    // Fungsi untuk mengatur marquee
+    function setupMarquee() {
+        // Hapus duplikasi yang ada
+        const originalContent = marquee.innerHTML.split('<!-- duplicate -->')[0];
+        
+        if (isMobile) {
+            // Mode mobile: duplikasi konten
+            if (!marquee.innerHTML.includes('<!-- duplicate -->')) {
+                marquee.innerHTML = originalContent + '<!-- duplicate -->' + originalContent;
+            }
+            // Mulai animasi
+            if (!animationId) {
+                animate();
+            }
+            marquee.style.display = 'flex';
+        } else {
+            // Mode desktop: hentikan animasi dan reset
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            // Reset posisi
+            position = 0;
+            marquee.style.transform = "translateX(0px)";
+            // Tampilkan hanya konten asli
+            marquee.innerHTML = originalContent;
+        }
+    }
+
+    function animate() {
+        if (!isMobile) return; // Hentikan jika bukan mobile
+
+        position -= 0.8;
+
+        if (Math.abs(position) >= marquee.scrollWidth / 2) {
+            position = 0;
+        }
+
+        marquee.style.transform = "translateX(" + position + "px)";
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // Event listener untuk resize window q
+    window.addEventListener("resize", function () {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== isMobile) {
+            isMobile = newIsMobile;
+            setupMarquee();
+        }
+    });
+
+    // Setup awal
+    setupMarquee();
+
+    // Event hover hanya untuk mobile
+    wrapper.addEventListener("mouseenter", function () {
+        if (isMobile && animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    });
+
+    wrapper.addEventListener("mouseleave", function () {
+        if (isMobile && !animationId) {
+            animate();
+        }
+    });
+});
 document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.et-hero-tabs');
     const navContainer = document.querySelector('.et-hero-tabs-container');
@@ -14,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             section.remove();
         });
         document.body.appendChild(wrapper);
+        // Hapus duplikat hero section dari wrapper
         const heroInWrapper = wrapper.querySelector('.et-hero-tabs');
         if (heroInWrapper) heroInWrapper.remove();
     }
@@ -21,8 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroHeight = heroSection.offsetHeight;
     const navHeight = navContainer.offsetHeight;
     
+    // Fungsi untuk mengecek scroll position
     function checkScroll() {
         const scrollPosition = window.scrollY;
+        
         if (scrollPosition >= heroHeight - navHeight) {
             navContainer.classList.add('sticky');
             document.querySelector('.content-wrapper')?.classList.add('has-sticky-nav');
@@ -32,28 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Event listener untuk scroll
     window.addEventListener('scroll', checkScroll);
+    
+    // Initial check
     checkScroll();
 });
-
-// ========== INISIALISASI MDB CAROUSEL (CARA 1: Menggunakan CDN) ==========
-// Tunggu hingga MDB siap
-if (typeof mdb !== 'undefined') {
-    // Inisialisasi semua carousel
-    document.querySelectorAll('[data-mdb-carousel-init]').forEach(element => {
-        new mdb.Carousel(element);
-    });
-    console.log('MDB Carousel initialized via CDN');
-} else {
-    console.warn('MDB not loaded yet, waiting...');
-    // Load MDB dari CDN jika belum ada
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js';
-    script.onload = function() {
-        document.querySelectorAll('[data-mdb-carousel-init]').forEach(element => {
-            new mdb.Carousel(element);
-        });
-        console.log('MDB Carousel initialized after loading CDN');
-    };
-    document.head.appendChild(script);
-}
