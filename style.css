@@ -1,9 +1,9 @@
 body {
-		font-family: "Century Gothic", 'Lato', sans-serif;
+    font-family: "Century Gothic", 'Lato', sans-serif;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .et-hero-tabs {
@@ -14,22 +14,24 @@ a {
     height: 50vh;
     position: relative;
     background: #eee;
-		text-align: center;
-		padding: 0 2em;
+    text-align: center;
+    padding: 0 2em;
     box-sizing: border-box;
-    h1 {
-        font-size: 25px;
-        margin: 0;
-        letter-spacing: 5px;
-    }
-    h3 {
-        margin-top: 5px;
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
-        opacity: 0.6;
-    }
 }
-/* Tambahkan class untuk sticky navigation */
+
+.et-hero-tabs h1 {
+    font-size: 25px;
+    margin: 0;
+    letter-spacing: 5px;
+}
+
+.et-hero-tabs h3 {
+    margin-top: 5px;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    opacity: 0.6;
+}
+
 .et-hero-tabs-container.sticky {
     position: fixed;
     top: 0;
@@ -39,7 +41,6 @@ a {
     animation: slideDown 0.3s ease;
 }
 
-/* Animasi slide down */
 @keyframes slideDown {
     from {
         transform: translateY(-100%);
@@ -49,14 +50,13 @@ a {
     }
 }
 
-/* Memberi jarak agar konten tidak tertutup navigasi saat sticky */
 .content-wrapper {
     padding-top: 0;
     transition: padding-top 0.3s ease;
 }
 
 .content-wrapper.has-sticky-nav {
-    padding-top: 70px; /* Sama dengan tinggi navigasi */
+    padding-top: 70px;
 }
 
 .et-hero-tabs-container {
@@ -69,10 +69,6 @@ a {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background: #fff;
     z-index: 10;
-    &--top {
-        position: fixed;
-        top: 0;
-    }
 }
 
 .et-hero-tab {
@@ -82,13 +78,14 @@ a {
     flex: 1;
     color: #000;
     letter-spacing: 0.1rem;
-		transition: all 0.5s ease;
-		font-size: 0.8rem;
-	  &:hover {
-			color:white;
-      background: rgba(102,177,241,0.8);
-			transition: all 0.5s ease;
-    }
+    transition: all 0.5s ease;
+    font-size: 0.8rem;
+}
+
+.et-hero-tab:hover {
+    color: white;
+    background: rgba(128, 128, 128, 0.8);
+    transition: all 0.5s ease;
 }
 
 .et-hero-tab-slider {
@@ -96,104 +93,35 @@ a {
     bottom: 0;
     width: 0;
     height: 6px;
-    background: #66B1F1;
+    background: rgba(128, 128, 128, 0.8);
     transition: left 0.3s ease;
 }
 
-/* Responsive Desktop */
 @media (min-width: 800px) {
-	.et-hero-tabs {
-    h1 {
+    .et-hero-tabs h1 {
         font-size: 3rem;
     }
-    h3 {
+    .et-hero-tabs h3 {
         font-size: 1rem;
     }
-	}
-	.et-hero-tab {
-		font-size: 1rem;
-	}
+    .et-hero-tab {
+        font-size: 1rem;
+    }
 }
 
-/* Responsif untuk mobile */
 @media (max-width: 768px) {
     .brand-item img {
         height: 40px;
-      }
-}
-.brand-marquee {
-      background: #ededed;
-      padding: 40px 20px;
-      overflow: hidden;
-      position: relative;
-      box-sizing: border-box;
     }
-
-    .brand-header h2 {
-      text-align: center;
-      font-size: 32px;
-    }
-
-    .marquee {
-    background-color: #ffffff;
-      width: 100%;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        border-radius: 8px;
-    }
-
-    .marquee-track {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      white-space: nowrap;
-      will-change: transform;
-    }
-
-    .brand-item {
-      flex: 0 0 auto;
-    }
-
-    .brand-item img {
-      height: 130px;
-      width: auto;
-      object-fit: contain;
-      transition: all .3s ease;
-      opacity: .8;
-      
-    }
-
-    .brand-item img:hover {
-      opacity: 1;
-      transform: scale(1.08);
-    }
-    .rounded-circle {
-    border: 6px solid #fff;
 }
 
-.fonts {
-    font-size: 13px;
-}
+/* HAPUS .brand-marquee, .marquee, .marquee-track, .brand-item karena tidak dipakai di HTML */
 
-.social-list {
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-}
-
-.social-list li {
-    padding: 10px;
-    color: #717171;
-    cursor: pointer;
-    font-size: 19px;
-}
 .footer {
     background: #f8f9fa;
     padding: 40px 0 20px;
     border-top: 1px solid #eee;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .footer-brand {
@@ -221,7 +149,7 @@ a {
 }
 
 .social-link:hover {
-    color: #0d6efd;
+    color: rgba(128, 128, 128, 0.8);
 }
 
 .footer-links {
@@ -240,7 +168,7 @@ a {
 }
 
 .footer-links a:hover {
-    color: #0d6efd;
+    color: rgba(128, 128, 128, 0.8);
 }
 
 .copyright {
@@ -250,3 +178,105 @@ a {
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
+
+.skills-section {
+    margin-top: 100px;
+    padding: 40px 0 0 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    color: #000000;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.section-title p {
+    color: #000000;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.skill-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 93, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 35px 25px;
+    transition: 0.4s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    border-color: #bebebe;
+    box-shadow: 0 15px 40px rgba(104, 104, 104, 0.25);
+}
+
+.skill-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #5c5c5c, #a7a7a7);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 32px;
+}
+
+/* PERBAIKI: warna icon bi jadi putih */
+.skill-icon i {
+    color: #ffffff;
+}
+
+.skill-card h4 {
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.skill-card p {
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.progress {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    border-radius: 50px;
+    background: linear-gradient(90deg, #000000, #7a7a7a);
+}
+
+.skill-percent {
+    color: #4e4e4e;
+    font-weight: 600;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.wave {
+    display: block;
+    margin: -100px 0 0 0 !important;
+    position: relative;
+    z-index: 2;
+}
+#tab-startup{
+    background-color: #ededed;
+}
+/* HAPUS: .rounded-circle, .fonts, .social-list karena tidak dipakai */
